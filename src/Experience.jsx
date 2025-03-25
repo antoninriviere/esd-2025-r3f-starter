@@ -1,4 +1,5 @@
 
+import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 
@@ -12,9 +13,18 @@ export default function Experience() {
     })
 
     return <>
-        <mesh ref={capsuleRef} scale={[1, 1, 1]}>
-            <capsuleGeometry args={[1, 1, 4, 8]} />
-            <meshBasicMaterial args={[{ color: 'hotpink' }]} wireframe={true} />
+    <directionalLight position={[1, 2, 3]} intensity={4.5} />
+        <ambientLight intensity={1.5} />
+        <mesh ref={capsuleRef} scale={[1, 1, 1]} position-y={ 1 }>
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial args={[{ color: 'orange' }]} wireframe={false} />
+        </mesh>
+
+        <mesh
+            position-y={ - 1 }
+        >
+            <boxGeometry args={[20, 0.5, 20]}/>
+            <meshStandardMaterial color="#f2f5ff" side={THREE.DoubleSide} />
         </mesh>
     </>
 }
